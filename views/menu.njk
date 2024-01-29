@@ -1,0 +1,10 @@
+<nav class="nav">
+    <a class="btn btn-dark" href="/habitaciones">Habitaciones</a>
+    {% if (session and session.usuario) %}
+        <a class="btn btn-dark ms-2" href="/habitaciones/nueva">Nueva habitación</a>
+        <a class="btn btn-dark ms-2" href="/auth/logout">Logout</a>
+    {% endif %}
+    {% if (session.usuario == undefined) %}
+        <a class="btn btn-dark ms-2" href="/auth/login">Login</a>
+    {% endif %}
+</nav>

@@ -1,0 +1,24 @@
+{% extends "base.njk" %}
+{% block titulo %}Habitaciones | Alta nueva limpieza{% endblock %}
+
+{% block contenido %}
+
+    <h1 class="titulo">Limpiezas de la habitación {{habitacion.numero}}</h1>
+
+    <form action="/limpiezas/{{habitacion.id}}" method="post">
+        <div class="form-group">
+            <label for="fecha">Fecha de la limpieza:</label>
+            <input type="date" class="form-control" name="fecha" value="{{anyo}}-{{mes}}-{{dia}}">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="observa">Observaciones:</label> <br>
+            <textarea name="observa" class="form-control"></textarea>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+{% endblock %}

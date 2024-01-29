@@ -1,0 +1,56 @@
+{% extends "base.njk" %}
+{% block titulo %}Habitaciones | Edición habitación{% endblock %}
+
+{% block contenido %}
+
+    <h1 class="titulo">Editar la habitación {{habitacion.numero}}</h1>
+
+    <form action="/habitaciones/editar/{{habitacion.id}}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="numero">Número de habitación:</label>
+            <input type="number" class="form-control" name="numero" placeholder="Número de habitación..." min="1" max="100" value="{{habitacion.numero}}">
+        </div>
+        {% if errores.numero %}
+        <p class="text-danger">{{errores.numero}}</p>
+        {% endif %}
+        <br>
+
+        <div class="form-group">
+            <label for="tipoHabitacion">Tipo de habitación:</label>
+            <select name="tipoHabitacion" class="form-control">
+                <option value="individual">Individual</option>
+                <option value="doble">Doble</option>
+                <option value="familiar">Familiar</option>
+                <option value="suite">Suite</option>
+            </select>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="number" class="form-control" name="precio" placeholder="Precio de la habitación..." step="0.01" value="{{habitacion.precio}}">
+        </div>
+        {% if errores.precio %}
+        <p class="text-danger">{{errores.precio}}</p>
+        {% endif %}
+        <br>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label> <br>
+            <textarea name="descripcion" class="form-control">{{habitacion.descripcion}}</textarea>
+        </div>
+        {% if errores.descripcion %}
+        <p class="text-danger">{{errores.descripcion}}</p>
+        {% endif %}
+        <br>
+
+        <div class="form-group">
+            <label for="imagen">Imagen:</label>
+            <input type="file" class="form-control" name="imagen" placeholder="Imagen de la habitación...">
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/style.css">
+        <title>{% block titulo %} {% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            {% include "menu.njk" %}
+        </header>
+
+        <div class="container">
+            {% block contenido %}
+
+            {% endblock %}
+        </div>
+
+        <footer>
+        </footer>
+    </body>
+</html>

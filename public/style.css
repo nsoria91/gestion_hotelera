@@ -1,0 +1,27 @@
+.nav{
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+.card{
+    background-color: #B9D9EB;
+}
+
+.titulo{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bolder;
+}
+
+.crd{
+    background-color: #B9D9EB;
+}
+
+.subtitulo{
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+#imagenHabitacion{
+    text-align: center;
+}

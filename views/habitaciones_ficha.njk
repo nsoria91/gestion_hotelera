@@ -1,0 +1,87 @@
+{% extends "base.njk" %}
+{% block titulo %}Habitaciones | Ficha{% endblock %}
+{% block contenido %}
+    <h1 class="titulo">Ficha de habitación {{ habitacion.numero }}</h1>
+    <br>
+    {% if habitacion.imagen != null %}
+        <img id="imagenHabitacion" src="/public/uploads/habitaciones/{{ habitacion.imagen }}">
+    {% endif %}
+    <br>
+    <br>
+        <p>Tipo {{ habitacion.tipo }} -
+            <strong>{{ habitacion.precio }} eur/noche.</strong>
+        </p>
+            <p>{{ habitacion.descripcion }}.</p>
+            <br>
+            {% if session and session.usuario %}
+            <form style="display:inline" action="/habitaciones/{{ habitacion.id }}" method="post">
+                <input type="hidden" name="_method" value="delete" />
+                <button type="submit" class="btn btn-danger">Borrar</button>
+            </form>
+            <br>
+            <br>
+            <a class="btn btn-success" href="/habitaciones/editar/{{habitacion.id}}">Editar esta habitación</a>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+            <br>
+                <h3 class="subtitulo">Incidencias</h3>
+                {% if session and session.usuario %}
+                <h4>Nueva incidencia</h4>
+                <form action="/habitaciones/{{habitacion.id}}/incidencias" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label> <br>
+                        <textarea name="descripcion" class="form-control"></textarea>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="imagen">Imagen:</label>
+                        <input type="file" class="form-control" name="imagen" placeholder="Imagen de la habitación...">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+                {% endif %}
+                <br>
+                <br>
+                {% if habitacion.incidencias.length == 0 %}
+                    <div class="col-12 border border-secondary mb-3 crd p-5">-
+                    No hay ninguna incidencia para esta habitación.
+                    </div>
+                    <br>
+                {% else %}
+                    {% for incidencia in habitacion.incidencias %}
+                    <div class="col-12 border border-secondary mb-3 crd">
+                        {% if incidencia.imagen != undefined %}
+                        <img src="/public/uploads/incidencias/{{ incidencia.imagen }}">
+                        {% endif %}
+                        <p class="p-1">
+                            <strong>Fecha inicio:</strong> {{ incidencia.fechaInicio | date("DD/MM/YYYY") }}
+                        </p>
+                        {% if incidencia.fechaFin != null %}
+                        <p class="p-1">
+                            <strong>Fecha fin:</strong> {{ incidencia.fechaFin | date("DD/MM/YYYY") }}
+                        </p>
+                        {% endif %}
+                        <p class="p-1">
+                            {{ incidencia.descripcion }}
+                        </p>
+                        {% if incidencia.fechaFin == null and session and session.usuario %}
+                        <form style="display:inline" action="/habitaciones/{{ habitacion.id }}/incidencias/{{ incidencia.id }}" method="post">
+                            <input type="hidden" name="_method" value="put" />
+                            <button type="submit" class="btn btn-danger">Cerrar</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% endif %}
+                
+                <br>
+                <br>
+                <h3 class="subtitulo">
+                    Limpiezas
+                </h3>
+                <a class="btn btn-primary mb-2" href="/limpiezas/{{ habitacion.id }}">Ver limpiezas</a>
+{% endblock %}
