@@ -4,7 +4,7 @@ const Habitacion = require(__dirname + '/models/habitacion.js');
 const Limpieza = require(__dirname + '/models/limpieza.js');
 const Usuario = require(__dirname + '/models/usuario.js');
 
-mongoose.connect(process.env.RUTA);
+mongoose.connect("mongodb://localhost:27017/hotel");
 
 let usuarios = [
     new Usuario({login: "usuario1", password: "password1"}),
