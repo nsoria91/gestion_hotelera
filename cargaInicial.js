@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const Habitacion = require(__dirname + '/../models/habitacion.js');
-const Limpieza = require(__dirname + '/../models/limpieza.js');
-const Usuario = require('../models/usuario.js');
+const Habitacion = require(__dirname + '/models/habitacion.js');
+const Limpieza = require(__dirname + '/models/limpieza.js');
+const Usuario = require('/models/usuario.js');
 
 mongoose.connect(process.env.RUTA);
 
