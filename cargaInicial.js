@@ -1,3 +1,16 @@
+const mongoose = require('mongoose');
+
+const Habitacion = require(__dirname + '/../models/habitacion.js');
+const Limpieza = require(__dirname + '/../models/limpieza.js');
+const Usuario = require('../models/usuario.js');
+
+mongoose.connect(process.env.RUTA);
+
+let usuarios = [
+    new Usuario({login: "usuario1", password: "password1"}),
+    new Usuario({login: "usuario2", password: "password2"})
+];
+
 let habitaciones = [
     new Habitacion({
         id: "1a1a1a1a1a1a1a1a1a1a1a1a",
@@ -92,3 +105,4 @@ let limpiezas = [
 
 habitaciones.forEach(h => h.save());
 limpiezas.forEach(l => l.save());
+usuarios.forEach(u=>u.save());
